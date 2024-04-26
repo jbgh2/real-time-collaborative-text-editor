@@ -153,11 +153,15 @@ CORS_ALLOW_ALL_ORIGINS = True
 # django channels
 # https://channels.readthedocs.io/en/latest/
 
+#Redis setup
+REDIS_URL = os.environ.get("REDIS_URL")
+print(f"REDIS_URL: {REDIS_URL}")
+
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [("127.0.0.1", 6379)],
+            "hosts": [REDIS_URL],
         },
     },
 }
